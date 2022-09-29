@@ -15,6 +15,9 @@
 		8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40928E56141008FC88A /* UIStackView+Ext.swift */; };
 		8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40B28E56892008FC88A /* SingUpViewController.swift */; };
 		8D12D40E28E5878F008FC88A /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */; };
+		8D32EE2228E5C7E500F19CBE /* DetailAlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2128E5C7E500F19CBE /* DetailAlbumTableViewController.swift */; };
+		8D32EE2528E5CD3D00F19CBE /* AlbumTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */; };
+		8D32EE2728E5D33F00F19CBE /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		8D12D40928E56141008FC88A /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		8D12D40B28E56892008FC88A /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		8D32EE2128E5C7E500F19CBE /* DetailAlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAlbumTableViewController.swift; sourceTree = "<group>"; };
+		8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableHeaderView.swift; sourceTree = "<group>"; };
+		8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 		8D12D3F028E49417008FC88A /* MyTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				8D32EE2328E5CD1F00F19CBE /* Views */,
 				8D12D40828E56124008FC88A /* Extensions */,
 				8D12D40728E49A96008FC88A /* Resources */,
 				8D12D40628E49A86008FC88A /* Controllers */,
@@ -83,6 +90,8 @@
 				8D12D3F528E49417008FC88A /* AuthViewController.swift */,
 				8D12D40B28E56892008FC88A /* SingUpViewController.swift */,
 				8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */,
+				8D32EE2128E5C7E500F19CBE /* DetailAlbumTableViewController.swift */,
+				8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +112,14 @@
 				8D12D40928E56141008FC88A /* UIStackView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8D32EE2328E5CD1F00F19CBE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +194,12 @@
 			files = (
 				8D12D3F628E49417008FC88A /* AuthViewController.swift in Sources */,
 				8D12D3F228E49417008FC88A /* AppDelegate.swift in Sources */,
+				8D32EE2528E5CD3D00F19CBE /* AlbumTableHeaderView.swift in Sources */,
 				8D12D40E28E5878F008FC88A /* AlbumsViewController.swift in Sources */,
+				8D32EE2728E5D33F00F19CBE /* UserInfoViewController.swift in Sources */,
 				8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */,
 				8D12D3F428E49417008FC88A /* SceneDelegate.swift in Sources */,
+				8D32EE2228E5C7E500F19CBE /* DetailAlbumTableViewController.swift in Sources */,
 				8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

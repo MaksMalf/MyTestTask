@@ -65,7 +65,8 @@ class AlbumsViewController: UIViewController {
     
     
     @objc func rightBarButtonItemTapped() {
-        
+        let navVC = UINavigationController(rootViewController: UserInfoViewController())
+        self.present(navVC, animated: true)
     }
 }
 
@@ -107,7 +108,8 @@ extension AlbumsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailViewController =
+        let detailViewController = DetailAlbumTableViewController()
+        self.present(detailViewController, animated: true)
     }
 }
 
