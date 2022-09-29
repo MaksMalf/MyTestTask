@@ -14,6 +14,7 @@
 		8D12D3FE28E49417008FC88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D12D3FC28E49417008FC88A /* LaunchScreen.storyboard */; };
 		8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40928E56141008FC88A /* UIStackView+Ext.swift */; };
 		8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40B28E56892008FC88A /* SingUpViewController.swift */; };
+		8D12D40E28E5878F008FC88A /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8D12D3FF28E49417008FC88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D12D40928E56141008FC88A /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		8D12D40B28E56892008FC88A /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
+		8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				8D12D3F528E49417008FC88A /* AuthViewController.swift */,
 				8D12D40B28E56892008FC88A /* SingUpViewController.swift */,
+				8D12D40D28E5878F008FC88A /* AlbumsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				8D12D3F628E49417008FC88A /* AuthViewController.swift in Sources */,
 				8D12D3F228E49417008FC88A /* AppDelegate.swift in Sources */,
+				8D12D40E28E5878F008FC88A /* AlbumsViewController.swift in Sources */,
 				8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */,
 				8D12D3F428E49417008FC88A /* SceneDelegate.swift in Sources */,
 				8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */,

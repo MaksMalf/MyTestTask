@@ -234,6 +234,8 @@ extension SingUpViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - SetConstraints
+
 extension SingUpViewController {
     
     private func setConstraints() {

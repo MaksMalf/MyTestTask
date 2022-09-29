@@ -118,7 +118,9 @@ class AuthViewController: UIViewController {
     }
     
     @objc func singInButtonTapped() {
-        
+        let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+        navigationVC.modalPresentationStyle = .fullScreen
+        self.present(navigationVC, animated: true)
     }
 }
 
