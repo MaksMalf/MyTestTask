@@ -12,6 +12,8 @@
 		8D12D3F628E49417008FC88A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D3F528E49417008FC88A /* AuthViewController.swift */; };
 		8D12D3FB28E49417008FC88A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D12D3FA28E49417008FC88A /* Assets.xcassets */; };
 		8D12D3FE28E49417008FC88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D12D3FC28E49417008FC88A /* LaunchScreen.storyboard */; };
+		8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40928E56141008FC88A /* UIStackView+Ext.swift */; };
+		8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D40B28E56892008FC88A /* SingUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8D12D3FA28E49417008FC88A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D12D3FD28E49417008FC88A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D12D3FF28E49417008FC88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D12D40928E56141008FC88A /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
+		8D12D40B28E56892008FC88A /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		8D12D3F028E49417008FC88A /* MyTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				8D12D40828E56124008FC88A /* Extensions */,
 				8D12D40728E49A96008FC88A /* Resources */,
 				8D12D40628E49A86008FC88A /* Controllers */,
 				8D12D40528E49A76008FC88A /* Applications */,
@@ -74,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				8D12D3F528E49417008FC88A /* AuthViewController.swift */,
+				8D12D40B28E56892008FC88A /* SingUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -86,6 +92,14 @@
 				8D12D3FF28E49417008FC88A /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8D12D40828E56124008FC88A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D12D40928E56141008FC88A /* UIStackView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +174,9 @@
 			files = (
 				8D12D3F628E49417008FC88A /* AuthViewController.swift in Sources */,
 				8D12D3F228E49417008FC88A /* AppDelegate.swift in Sources */,
+				8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */,
 				8D12D3F428E49417008FC88A /* SceneDelegate.swift in Sources */,
+				8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

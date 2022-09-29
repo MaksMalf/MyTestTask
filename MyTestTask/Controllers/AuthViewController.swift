@@ -52,7 +52,7 @@ class AuthViewController: UIViewController {
         let button = UIButton(type: .system)
         button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
         button.setTitle("SingUp", for: .normal)
-        button.tintColor = .label
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(singUpButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +63,8 @@ class AuthViewController: UIViewController {
     private let singInButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-        button.setTitle("singIn", for: .normal)
-        button.tintColor = .label
+        button.setTitle("SingIn", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(singInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -74,13 +74,47 @@ class AuthViewController: UIViewController {
     private var textFieldsStackView = UIStackView()
     private var buttonsStackView = UIStackView()
 
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        setupViews()
+        setupDelegate()
+        setConstraints()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupViews() {
+        title = "SingIn"
+        view.backgroundColor = .systemBackground
+        
+        textFieldsStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField],
+                                          axis: .vertical,
+                                          spacing: 10,
+                                          distribution: .fillProportionally)
+        
+        buttonsStackView = UIStackView(arrangedSubviews: [singInButton, singUpButton],
+                                       axis: .horizontal,
+                                       spacing: 10,
+                                       distribution: .fillEqually)
+        view.addSubview(scrollView)
+        scrollView.addSubview(backgroundView)
+        backgroundView.addSubview(loginLable)
+        backgroundView.addSubview(textFieldsStackView)
+        backgroundView.addSubview(buttonsStackView)
+    }
+    
+    private func setupDelegate() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     @objc func singUpButtonTapped() {
-        
+        let singUpViewController = SingUpViewController()
+        self.present(singUpViewController, animated: true)
     }
     
     @objc func singInButtonTapped() {
@@ -88,3 +122,48 @@ class AuthViewController: UIViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
+extension AuthViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
+    }
+}
+
+// MARK: - SetConstraints
+
+extension AuthViewController {
+    
+    private func setConstraints() {
+        
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            
+            textFieldsStackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            textFieldsStackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
+            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
+            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
+            
+            loginLable.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            loginLable.bottomAnchor.constraint(equalTo: textFieldsStackView.topAnchor, constant: -30),
+            
+            singInButton.heightAnchor.constraint(equalToConstant: 40),
+            singUpButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            buttonsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
+            buttonsStackView.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 30),
+            buttonsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20)
+        ])
+    }
+}
