@@ -18,6 +18,7 @@
 		8D32EE2228E5C7E500F19CBE /* DetailAlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2128E5C7E500F19CBE /* DetailAlbumTableViewController.swift */; };
 		8D32EE2528E5CD3D00F19CBE /* AlbumTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */; };
 		8D32EE2728E5D33F00F19CBE /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */; };
+		8D32EE2928E6E2C000F19CBE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2828E6E2C000F19CBE /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		8D32EE2128E5C7E500F19CBE /* DetailAlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAlbumTableViewController.swift; sourceTree = "<group>"; };
 		8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableHeaderView.swift; sourceTree = "<group>"; };
 		8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		8D32EE2828E6E2C000F19CBE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				8D12D40928E56141008FC88A /* UIStackView+Ext.swift */,
+				8D32EE2828E6E2C000F19CBE /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */,
 				8D12D3F428E49417008FC88A /* SceneDelegate.swift in Sources */,
 				8D32EE2228E5C7E500F19CBE /* DetailAlbumTableViewController.swift in Sources */,
+				8D32EE2928E6E2C000F19CBE /* String+Ext.swift in Sources */,
 				8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -41,7 +41,6 @@ class SingUpViewController: UIViewController {
     
     private let firstNameValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -56,7 +55,6 @@ class SingUpViewController: UIViewController {
     
     private let lastNameValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -78,7 +76,6 @@ class SingUpViewController: UIViewController {
     
     private let ageValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -88,12 +85,12 @@ class SingUpViewController: UIViewController {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "Phone Number"
+        textField.keyboardType = .numberPad
         return textField
     }()
     
     private let phoneNumderValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -108,7 +105,6 @@ class SingUpViewController: UIViewController {
     
     private let emailValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -123,7 +119,6 @@ class SingUpViewController: UIViewController {
     
     private let passwordValidLable: UILabel = {
         let lable = UILabel()
-        lable.text = "Valid"
         lable.font = .systemFont(ofSize: 14)
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
@@ -141,6 +136,10 @@ class SingUpViewController: UIViewController {
     }()
     
     private var elementsStackView = UIStackView()
+    let nameValidType: String.ValidTypes = .name
+    let emailValidType: String.ValidTypes = .email
+    let passwordValidType: String.ValidTypes = .password
+
     
     // MARK: - Life cycle
     
@@ -182,6 +181,11 @@ class SingUpViewController: UIViewController {
         backgroundView.addSubview(elementsStackView)
         backgroundView.addSubview(loginLable)
         backgroundView.addSubview(singUpButton)
+        regiterKeyboardNotification()
+    }
+    
+    deinit {
+        removeKeyboardNotification()
     }
     
     private func setupToolbar() {
@@ -209,6 +213,75 @@ class SingUpViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
+    private func set(textField: UITextField,
+                     lable: UILabel,
+                     validType: String.ValidTypes,
+                     validMessage: String,
+                     wrongMessage: String,
+                     replacementString string: String,
+                     range: NSRange) {
+        
+        let text = (textField.text ?? "") + string
+        let result: String
+        
+        if range.length == 1 {
+            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+            result = String(text[text.startIndex..<end])
+        } else {
+            result = text
+        }
+        
+        textField.text = result
+        
+        if result.isValid(validType: validType) {
+            lable.text = validMessage
+            lable.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        } else {
+            lable.text = wrongMessage
+            lable.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        }
+    }
+    
+    private func setPhoneNumber(mask: String, replacementString string: String, range: NSRange) -> String {
+        
+        let text = phoneNumderTextField.text ?? ""
+        let phone = (text as NSString).replacingCharacters(in: range, with: string)
+        let number = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = number.startIndex
+        
+        for character in mask where index < number.endIndex {
+            if character == "*" {
+                result.append(number[index])
+                index = number.index(after: index)
+            } else {
+                result.append(character)
+            }
+        }
+        
+        if result.count == 18 {
+            phoneNumderValidLable.text = "Phone is valid"
+            phoneNumderValidLable.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        } else {
+            phoneNumderValidLable.text = "Phone is not valid"
+            phoneNumderValidLable.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        }
+        
+        return result
+    }
+    
+    private func ageIsValid() -> Bool {
+        let calender = NSCalendar.current
+        let dateNow = Date()
+        let birthday = datePicker.date
+        
+        let age = calender.dateComponents([.year], from: birthday, to: dateNow)
+        let ageYear = age.year
+        
+        guard let ageYear else { return false }
+        return ageYear < 18 ? false : true
+    }
+    
     @objc func singUpButtonTapped() {
 //        let singUpViewController = SingUpViewController()
 //        self.present(singUpViewController, animated: true)
@@ -224,6 +297,48 @@ class SingUpViewController: UIViewController {
 
 extension SingUpViewController: UITextFieldDelegate {
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case firstNameTextField: set(textField: textField,
+                                     lable: firstNameValidLable,
+                                     validType: nameValidType,
+                                     validMessage: "Name is valid",
+                                     wrongMessage: "Use only A-Z characters, min 1 character",
+                                     replacementString: string,
+                                     range: range)
+        case lastNameTextField: set(textField: textField,
+                                    lable: lastNameValidLable,
+                                    validType: nameValidType,
+                                    validMessage: "Name is valid",
+                                    wrongMessage: "Use only A-Z characters, min 1 character",
+                                    replacementString: string,
+                                    range: range)
+        case emailTextField: set(textField: textField,
+                                 lable: emailValidLable,
+                                 validType: emailValidType,
+                                 validMessage: "Email is valid",
+                                 wrongMessage: "Email is not valid",
+                                 replacementString: string,
+                                 range: range)
+        case passwordTextField: set(textField: textField,
+                                 lable: passwordValidLable,
+                                 validType: passwordValidType,
+                                 validMessage: "Password is valid",
+                                 wrongMessage: "Password is not valid",
+                                 replacementString: string,
+                                 range: range)
+        case phoneNumderTextField: phoneNumderTextField.text = setPhoneNumber(mask: "+* (***) ***-**-**",
+                                                                              replacementString: string,
+                                                                              range: range)
+        default:
+            break
+        }
+        
+        
+        return false
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         firstNameTextField.resignFirstResponder()
         lastNameTextField.resignFirstResponder()
@@ -231,6 +346,38 @@ extension SingUpViewController: UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - Add and remove Observer
+
+extension SingUpViewController {
+    
+    private func regiterKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: next)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: next)
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
+    }
+    
+    @objc private func keyboardWillHide() {
+        scrollView.contentOffset = CGPoint.zero
     }
 }
 

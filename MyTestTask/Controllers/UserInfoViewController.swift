@@ -68,6 +68,7 @@ class UserInfoViewController: UIViewController {
     
 
     private func setupView() {
+        
         title = "Active User"
         view.backgroundColor = .systemBackground
         
@@ -91,5 +92,4 @@ class UserInfoViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
-
 }

@@ -54,7 +54,6 @@ class AuthViewController: UIViewController {
         button.setTitle("SingUp", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(singUpButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
@@ -66,7 +65,6 @@ class AuthViewController: UIViewController {
         button.setTitle("SingIn", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(singInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -83,6 +81,11 @@ class AuthViewController: UIViewController {
         setupViews()
         setupDelegate()
         setConstraints()
+        regiterKeyboardNotification()
+    }
+    
+    deinit {
+        removeKeyboardNotification()
     }
     
     // MARK: - Private Methods
@@ -90,6 +93,10 @@ class AuthViewController: UIViewController {
     private func setupViews() {
         title = "SingIn"
         view.backgroundColor = .systemBackground
+        singUpButton.addTarget(self, action: #selector(singUpButtonTapped), for: .touchUpInside)
+        singInButton.addTarget(self, action: #selector(singInButtonTapped), for: .touchUpInside)
+
+
         
         textFieldsStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField],
                                           axis: .vertical,
@@ -132,6 +139,38 @@ extension AuthViewController: UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - Add and remove Observer
+
+extension AuthViewController {
+    
+    private func regiterKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: next)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: next)
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 2)
+    }
+    
+    @objc private func keyboardWillHide() {
+        scrollView.contentOffset = CGPoint.zero
     }
 }
 
