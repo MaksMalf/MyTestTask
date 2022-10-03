@@ -43,6 +43,7 @@ class AuthViewController: UIViewController {
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter password"
+        textField.isSecureTextEntry = true
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -119,15 +120,42 @@ class AuthViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
+    private func findUserDataBase(email: String) -> User? {
+        let dataBase = DataBase.shared.users
+        print(dataBase)
+        var user: User?
+        dataBase.forEach {
+            if $0.email == email {
+                user = $0
+            }
+        }
+        return user
+    }
+    
     @objc func singUpButtonTapped() {
         let singUpViewController = SingUpViewController()
         self.present(singUpViewController, animated: true)
     }
     
     @objc func singInButtonTapped() {
-        let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
-        navigationVC.modalPresentationStyle = .fullScreen
-        self.present(navigationVC, animated: true)
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let user = findUserDataBase(email: email)
+        
+        if user == nil {
+            loginLable.text = "User not found"
+            loginLable.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        } else if user?.password == password {
+            let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+            navigationVC.modalPresentationStyle = .fullScreen
+            self.present(navigationVC, animated: true)
+            
+            guard let activeUser = user else { return }
+            DataBase.shared.saveActiveUser(user: activeUser)
+        } else {
+            loginLable.text = "Wrong password"
+            loginLable.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        }
     }
 }
 

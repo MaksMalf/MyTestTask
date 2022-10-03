@@ -64,6 +64,7 @@ class UserInfoViewController: UIViewController {
 
         setupView()
         setConstraints()
+        setModel()
     }
     
 
@@ -82,6 +83,21 @@ class UserInfoViewController: UIViewController {
                                 spacing: 20,
                                 distribution: .fillProportionally)
         view.addSubview(stackView)
+    }
+    
+    private func setModel() {
+        guard let activeUser = DataBase.shared.activeUser else { return }
+        
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormater.string(from: activeUser.age)
+        
+        firstNameLable.text = activeUser.firstName
+        lastNameLable.text = activeUser.lastName
+        phoneLable.text = activeUser.phone
+        emailLable.text = activeUser.email
+        passwordLable.text = activeUser.password
+        ageLable.text = dateString
     }
     
     private func setConstraints() {
