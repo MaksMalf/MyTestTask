@@ -19,6 +19,9 @@
 		8D32EE2528E5CD3D00F19CBE /* AlbumTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */; };
 		8D32EE2728E5D33F00F19CBE /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */; };
 		8D32EE2928E6E2C000F19CBE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32EE2828E6E2C000F19CBE /* String+Ext.swift */; };
+		8DF17DE928EAD38600FC7994 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF17DE828EAD38600FC7994 /* UserDefaultsManager.swift */; };
+		8DF17DEC28EAD44700FC7994 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF17DEB28EAD44700FC7994 /* UserModel.swift */; };
+		8DF17DEE28EADC0E00FC7994 /* AlertOk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF17DED28EADC0E00FC7994 /* AlertOk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableHeaderView.swift; sourceTree = "<group>"; };
 		8D32EE2628E5D33F00F19CBE /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		8D32EE2828E6E2C000F19CBE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		8DF17DE828EAD38600FC7994 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		8DF17DEB28EAD44700FC7994 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8DF17DED28EADC0E00FC7994 /* AlertOk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,8 @@
 		8D12D3F028E49417008FC88A /* MyTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				8DF17DEA28EAD43B00FC7994 /* Models */,
+				8DF17DE728EAD35E00FC7994 /* Services */,
 				8D32EE2328E5CD1F00F19CBE /* Views */,
 				8D12D40828E56124008FC88A /* Extensions */,
 				8D12D40728E49A96008FC88A /* Resources */,
@@ -123,6 +131,23 @@
 				8D32EE2428E5CD3D00F19CBE /* AlbumTableHeaderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8DF17DE728EAD35E00FC7994 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8DF17DE828EAD38600FC7994 /* UserDefaultsManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8DF17DEA28EAD43B00FC7994 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8DF17DEB28EAD44700FC7994 /* UserModel.swift */,
+				8DF17DED28EADC0E00FC7994 /* AlertOk.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,15 +220,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF17DEE28EADC0E00FC7994 /* AlertOk.swift in Sources */,
 				8D12D3F628E49417008FC88A /* AuthViewController.swift in Sources */,
 				8D12D3F228E49417008FC88A /* AppDelegate.swift in Sources */,
 				8D32EE2528E5CD3D00F19CBE /* AlbumTableHeaderView.swift in Sources */,
 				8D12D40E28E5878F008FC88A /* AlbumsViewController.swift in Sources */,
+				8DF17DE928EAD38600FC7994 /* UserDefaultsManager.swift in Sources */,
 				8D32EE2728E5D33F00F19CBE /* UserInfoViewController.swift in Sources */,
 				8D12D40C28E56892008FC88A /* SingUpViewController.swift in Sources */,
 				8D12D3F428E49417008FC88A /* SceneDelegate.swift in Sources */,
 				8D32EE2228E5C7E500F19CBE /* DetailAlbumTableViewController.swift in Sources */,
 				8D32EE2928E6E2C000F19CBE /* String+Ext.swift in Sources */,
+				8DF17DEC28EAD44700FC7994 /* UserModel.swift in Sources */,
 				8D12D40A28E56141008FC88A /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

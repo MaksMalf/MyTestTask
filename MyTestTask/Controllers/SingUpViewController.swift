@@ -113,6 +113,7 @@ class SingUpViewController: UIViewController {
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
         textField.placeholder = "Password"
         return textField
     }()
@@ -191,7 +192,7 @@ class SingUpViewController: UIViewController {
     private func setupToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(doneAction))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAction))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         toolbar.setItems([flexSpace, saveButton], animated: true)
@@ -283,12 +284,35 @@ class SingUpViewController: UIViewController {
     }
     
     @objc func singUpButtonTapped() {
-//        let singUpViewController = SingUpViewController()
-//        self.present(singUpViewController, animated: true)
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let phone = phoneNumderTextField.text ?? ""
+        
+        if firstName.isValid(validType: nameValidType)
+            && lastName.isValid(validType: nameValidType)
+            && email.isValid(validType: emailValidType)
+            && password.isValid(validType: passwordValidType)
+            && phone.count == 18
+            && ageIsValid() == true {
+            DataBase.shared.saveUser(firstName: firstName,
+                                     lastName: lastName,
+                                     phone: phone,
+                                     email: email,
+                                     password: password,
+                                     age: datePicker.date)
+            loginLable.text = "Registration complete"
+        } else {
+            loginLable.text = "Registration"
+            alertOk(title: "Error", message: "One of the fields is not valid")
+        }
     }
     
-    @objc func doneAction() {
+    @objc func saveAction() {
         getDateFromPicker()
+        ageValidLable.text = ageIsValid() ? "Age is valid" : "Age is not valid"
+        ageValidLable.textColor = ageIsValid() ? #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         view.endEditing(true)
     }
 }
@@ -328,14 +352,13 @@ extension SingUpViewController: UITextFieldDelegate {
                                  wrongMessage: "Password is not valid",
                                  replacementString: string,
                                  range: range)
-        case phoneNumderTextField: phoneNumderTextField.text = setPhoneNumber(mask: "+* (***) ***-**-**",
-                                                                              replacementString: string,
-                                                                              range: range)
+        case phoneNumderTextField: phoneNumderTextField.text = setPhoneNumber(
+            mask: "+* (***) ***-**-**",
+            replacementString: string,
+            range: range)
         default:
             break
         }
-        
-        
         return false
     }
     
